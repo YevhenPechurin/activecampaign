@@ -1,5 +1,6 @@
-from activecampaign.api.consts import API_ENDPOINT
+from activecampaign_api.api.consts import API_ENDPOINT
 
+ENDPOINT = API_ENDPOINT.SEGMENT
 
 class Segment(object):
     def __init__(self, name=None, logic=None,
@@ -87,10 +88,10 @@ class Segments(object):
 
 class SegmentRequest(object):
     def __init__(self, api_request):
-        self._api_request = api_request
+        self.api_request = api_request
 
     def get_all(self):
-        return Segments().from_dict(self._api_request.get_request(endpoint=API_ENDPOINT.SEGMENT))
+        return Segments().from_dict(self.api_request.get_request(endpoint=ENDPOINT))
 
     def get(self, segment_id):
-        return Segment.from_dict(self._api_request.get_request(endpoint=API_ENDPOINT.SEGMENT + '/' + segment_id))
+        return Segment.from_dict(self.api_request.get_request(endpoint=ENDPOINT + '/' + segment_id))

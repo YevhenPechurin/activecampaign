@@ -1,6 +1,6 @@
 
-from activecampaign.api.abstract_request import AbstractRequest
-from activecampaign.api.consts import API_ENDPOINT
+from activecampaign_api.api.abstract_request import AbstractRequest
+from activecampaign_api.api.consts import API_ENDPOINT
 
 
 class CustomFieldValueRequest(AbstractRequest):

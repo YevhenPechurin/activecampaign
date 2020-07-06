@@ -9,9 +9,10 @@ class ApiRequest(object):
         self._logger = logger
         self._configuration = configuration
         self._user_agent = user_agent
+        self.timeout = 10
 
-    def post_request(self, endpoint, params=None):
-        return self._request('POST', endpoint, params)
+    def post_request(self, endpoint, params=None, json_data=None):
+        return self._request('POST', endpoint, params, json_data)
 
     def get_request(self, endpoint, params=None):
         return self._request('GET', endpoint, params)
@@ -31,7 +32,7 @@ class ApiRequest(object):
             })
             response = requests.request(
                 method, self._configuration.api_url + '/' + endpoint,
-                params=params, headers=headers, json=json_data)
+                params=params, headers=headers, json=json_data, timeout=self.timeout)
             response.raise_for_status()
             return json.loads(response.text)
         except RequestException as e:
